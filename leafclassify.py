@@ -15,10 +15,33 @@ import time
 
 
 # fig = plt.figure()
+import base64
 
-st.title('Green stem Classifier')
 
-st.markdown("Prediction : (healthy  or  diseased)")
+
+#st.markdown(page_bg_img, unsafe_allow_html=True)
+
+st.title(':white[AI4AFS-UENR]')
+st.header(':white[Tomato Disease/Pest Detection App]')
+
+#st.markdown("Prediction Platform")
+def set_background(main_bg):  # local image
+    # set bg name
+    main_bg_ext = "png"
+    st.markdown(
+        f"""
+             <style>
+             .stApp {{
+                 background: url(data:image/{main_bg_ext};base64,{base64.b64encode(open(main_bg, "rb").read()).decode()});
+                 background-size: cover
+             }}
+             </style>
+             """,
+        unsafe_allow_html=True
+    )
+
+
+set_background('tomato.png')
 
 
 def main():
@@ -26,7 +49,7 @@ def main():
     class_btn = st.button("Classify")
     if file_uploaded is not None:
         image = Image.open(file_uploaded)
-        st.image(image, caption='Uploaded Image', use_column_width=True)
+        st.image(image, caption='Uploaded Image', use_column_width=False)
 
     if class_btn:
         if file_uploaded is None:
