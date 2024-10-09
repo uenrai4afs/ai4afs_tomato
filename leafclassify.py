@@ -20,9 +20,7 @@ import base64
 
 
 #st.markdown(page_bg_img, unsafe_allow_html=True)
-
-st.title(':white[AI4AFS-UENR]')
-st.header(':white[Tomato Disease/Pest Detection App]')
+st.markdown("<h1 style='color: black;'>Tomato Disease/Pest Detection App</h1>", unsafe_allow_html=True)
 
 #st.markdown("Prediction Platform")
 def set_background(main_bg):  # local image
@@ -63,7 +61,8 @@ def main():
 
                 time.sleep(1)
                 st.success('Detect')
-                st.write(predictions)
+                #st.write(predictions)
+                st.markdown(predictions, unsafe_allow_html=True)
 
 
 ## This code is for saved model in format as H5 file
@@ -131,7 +130,13 @@ def predict(image):
     high=np.argmax(probabilities)
     result_1=label_new[high]
     confidence=100 * np.max(probabilities)
-    result="Category:"+ "  "+str(result_1) +"     "+ "\nConfidence: "+ " "+ str(confidence)+ "%"
+   #result="Category:"+ "  "+str(result_1) +"     "+ "\nConfidence: "+ " "+ str(confidence)+ "%"    
+    result = f"""
+    <span style='color: black;'>
+        Category: <strong>{result_1}</strong><br>
+        Confidence: <strong>{confidence:.2f}%</strong>
+    </span>
+    """
 
 
     return result
